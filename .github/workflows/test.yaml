@@ -1,0 +1,59 @@
+name: Test
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+  merge_group:
+
+permissions:
+  id-token: write
+  pages: write
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: pre-commit check
+        run: |
+          pip install pre-commit
+          ret=0
+          if [ "${{ github.event_name }}" == "push" ]
+          then
+            if [ "${{ github.event.created }}" == "true" ]
+            then
+              pre-commit run --all-files --show-diff-on-failure || ret=$?
+            else
+              git fetch origin ${{ github.event.before }}:old_head
+              pre-commit run --from-ref ${{ github.event.before }} --to-ref ${{ github.event.after }} --show-diff-on-failure || ret=$?
+            fi
+          elif [ "${{ github.event_name }}" == "pull_request" ]
+          then
+            if [ "${{ github.event.action }}" == "opened" ]
+            then
+              pre-commit run --from-ref ${{ github.event.pull_request.base.sha }} --to-ref ${{ github.event.pull_request.head.sha }} --show-diff-on-failure || ret=$?
+            elif [ "${{ github.event.action }}" == "synchronize" ]
+            then
+              git fetch origin ${{ github.event.before }}:old_head
+              pre-commit run --from-ref ${{ github.event.before }} --to-ref ${{ github.event.after }} --show-diff-on-failure || ret=$?
+            fi
+          elif [ "${{ github.event_name }}" == "merge_group" ]
+          then
+            git fetch origin ${{ github.event.merge_group.base_sha }}:old_head
+            pre-commit run --from-ref ${{ github.event.merge_group.base_sha }} --to-ref ${{ github.event.merge_group.head_sha }} --show-diff-on-failure || ret=$?
+          fi
+          if [ "$ret" != "0" ]
+          then
+            echo ''
+            echo '=== Code style issue detected! ==='
+            echo 'Suggest changes are listed above.'
+            echo 'Please install pre-commit and run `pre-commit run --all-files` to fix it.'
+            echo 'Strongly recommended to run `pre-commit install` to catch issues before pushing.'
+            echo 'You can learn more abour pre-commit from https://pre-commit.com/'
+            exit $ret
+          fi

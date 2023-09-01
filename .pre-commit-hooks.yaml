@@ -1,0 +1,11 @@
+- id: use-webp-image
+  name: check if image is in webp format
+  entry: pre_commit_hooks/main.sh use-webp-image
+  language: script
+  types: [image]
+  exclude_types: [svg]
+- id: fix-en-dash-list
+  name: fix en dash list which is not recognized as real list
+  entry: pre_commit_hooks/main.sh fix-en-dash-list
+  language: script
+  types: [markdown]
