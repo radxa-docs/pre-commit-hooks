@@ -7,6 +7,7 @@
   name: check if image is in webp format
   entry: pre_commit_hooks/main.sh use-webp-image
   language: script
+  require_serial: true
   types: [image]
   exclude_types: [svg]
 - id: fix-en-dash-list
