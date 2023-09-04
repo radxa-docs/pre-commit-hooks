@@ -1,3 +1,8 @@
+- id: remove-unreferenced-image
+  name: check if image is not referenced by any file
+  entry: pre_commit_hooks/main.sh remove-unreferenced-image
+  language: script
+  types: [image]
 - id: use-webp-image
   name: check if image is in webp format
   entry: pre_commit_hooks/main.sh use-webp-image
