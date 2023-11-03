@@ -20,3 +20,13 @@
   entry: pre_commit_hooks/main.sh no-full-uri-for-internal-pages
   language: script
   types: [markdown]
+- id: tab-with-querystring-undefined
+  name: queryString must be defined when groupId is not defined
+  entry: pre_commit_hooks/main.sh tab-with-querystring-undefined
+  language: script
+  types: [markdown]
+- id: tab-without-querystring
+  name: Tabs must come with queryString
+  entry: pre_commit_hooks/main.sh tab-without-querystring
+  language: script
+  types: [markdown]
