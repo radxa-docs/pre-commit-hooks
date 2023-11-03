@@ -15,3 +15,8 @@
   entry: pre_commit_hooks/main.sh fix-en-dash-list
   language: script
   types: [markdown]
+- id: no-full-uri-for-internal-pages
+  name: fix full URI link for internal pages
+  entry: pre_commit_hooks/main.sh no-full-uri-for-internal-pages
+  language: script
+  types: [markdown]
