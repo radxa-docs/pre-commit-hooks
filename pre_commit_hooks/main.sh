@@ -3,32 +3,23 @@
 main() {
     local TEMP ret=0
 
-    if ! TEMP="$(getopt -o "hd" -l "help,dry-run" -n "$0" -- "$@")"
-    then
-        return 1
-    fi
-    eval set -- "$TEMP"
-
     local DRY_RUN="false"
     export DRY_RUN
 
-    while true
+    while getopts "hd" TEMP
     do
-        TEMP="$1"
-        shift
         case "$TEMP" in
-            -h|--help)
-                echo "$(basename "$0") <files>"
-                return
-                ;;
-            -d|--dry-run)
+            d)
+                echo "Dry run. Files will not be changed!"
                 DRY_RUN="true"
                 ;;
-            --)
-                break
+            h|?)
+                echo "$TEMP" "$(basename "$0") <files>"
+                return
                 ;;
         esac
     done
+    shift $((OPTIND - 1))
 
     # loading check function
     # shellcheck source=/dev/null
