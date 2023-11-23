@@ -26,4 +26,5 @@ In short, run the following command in `radxa-doc/documentation` project folder:
 
 ```bash
 pre-commit try-repo ../pre-commit-hooks --verbose --all-files
+pre-commit try-repo ../pre-commit-hooks --verbose --all-files --hook-stage manual
 ```

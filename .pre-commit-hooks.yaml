@@ -30,3 +30,9 @@
   entry: pre_commit_hooks/main.sh tab-without-querystring
   language: script
   types: [markdown]
+- id: check-external-links
+  name: Check external links
+  entry: pre_commit_hooks/main.sh check-external-links
+  language: script
+  types: [markdown]
+  stages: [manual]
