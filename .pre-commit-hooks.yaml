@@ -51,3 +51,8 @@
   entry: pre_commit_hooks/main.sh globally-available-components
   language: script
   types: [markdown]
+- id: remove-category-json
+  name: Remove duplicated import for globally enabled components
+  entry: pre_commit_hooks/main.sh remove-category-json
+  language: script
+  types: [json]
