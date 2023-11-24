@@ -41,3 +41,8 @@
   entry: pre_commit_hooks/main.sh disable-sidebar_label
   language: script
   types: [markdown]
+- id: index-to-README
+  name: Rename index.md to README.md
+  entry: pre_commit_hooks/main.sh index-to-README
+  language: script
+  types: [markdown]
