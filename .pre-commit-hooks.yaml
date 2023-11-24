@@ -36,3 +36,8 @@
   language: script
   types: [markdown]
   stages: [manual]
+- id: disable-sidebar_label
+  name: Use Markdown title instead of sidebar_label
+  entry: pre_commit_hooks/main.sh disable-sidebar_label
+  language: script
+  types: [markdown]
