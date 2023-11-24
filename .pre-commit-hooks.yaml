@@ -46,3 +46,8 @@
   entry: pre_commit_hooks/main.sh index-to-README
   language: script
   types: [markdown]
+- id: globally-available-components
+  name: Remove duplicated import for globally enabled components
+  entry: pre_commit_hooks/main.sh globally-available-components
+  language: script
+  types: [markdown]
