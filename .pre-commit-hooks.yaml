@@ -61,3 +61,8 @@
   entry: pre_commit_hooks/main.sh check-folder-structure
   language: script
   types_or: [file, symlink]
+- id: check-chinese
+  name: Check if English documents contain Chinese
+  entry: pre_commit_hooks/main.sh check-chinese
+  language: script
+  types_or: [markdown]
