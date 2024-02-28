@@ -66,3 +66,8 @@
   entry: pre_commit_hooks/main.sh check-chinese
   language: script
   types_or: [markdown]
+- id: check-title-initial
+  name: Check if the first letter of the title is capitalized
+  entry: pre_commit_hooks/main.sh check-title-initial
+  language: script
+  types_or: [markdown]
