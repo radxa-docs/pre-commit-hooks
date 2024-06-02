@@ -71,3 +71,8 @@
   entry: pre_commit_hooks/main.sh check-title-initial
   language: script
   types_or: [markdown]
+- id: trademark-check
+  name: Enforce proper standard when referencing trademarks
+  entry: pre_commit_hooks/main.sh trademark-check
+  language: script
+  types: [markdown]
